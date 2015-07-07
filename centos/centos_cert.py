@@ -3,7 +3,10 @@ from OpenSSL import crypto
 
 defaults = {
             'USER_CERT_FILE': '~/.centos.cert',
+            'FAS_TOPURL'    : 'https://accounts.centos.org/',
+            'FAS_CRL'       : 'https://accounts.centos.org/ca/crl.pem',
            }
+
 class CentOSUserCert(object):
     DEFAULT_USER_FILE="~/.centos.cert"
 
