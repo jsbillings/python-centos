@@ -16,3 +16,4 @@ class CentOSUserCert(object):
             self.__dict__.update(dict(self._cert.get_subject().get_components()))
 
             self.expired = self._cert.has_expired() == True
+            self.serial = self._cert.get_serial_number()
