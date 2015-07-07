@@ -1,4 +1,6 @@
 import os
+import requests
+
 from OpenSSL import crypto
 
 defaults = {
@@ -23,3 +25,12 @@ class CentOSUserCert(object):
 
             self.expired = self._cert.has_expired() == True
             self.serial = self._cert.get_serial_number()
+
+    def is_valid(self):
+        crl_response = requests.get(defaults['FAS_CRL'])
+        crl = crypto.load_crl(crypto.FILETYPE_PEM, crl_response.text)
+
+        if self.serial in (long(x.get_serial(), 16) for x in crl.get_revoked()):
+            return False
+
+        return True
