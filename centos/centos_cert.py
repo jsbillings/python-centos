@@ -15,4 +15,4 @@ class CentOSUserCert(object):
             # are all pieces of data we want to reference in this class
             self.__dict__.update(dict(self._cert.get_subject().get_components()))
 
-            self.expired = self._cert.has_expired()
+            self.expired = self._cert.has_expired() == True
