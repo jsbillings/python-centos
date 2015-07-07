@@ -1,7 +1,7 @@
 import os
 from OpenSSL import crypto
 
-class CentOSCert(object):
+class CentOSUserCert(object):
     DEFAULT_USER_FILE="~/.centos.cert"
 
     def __init__(self, filename=None):

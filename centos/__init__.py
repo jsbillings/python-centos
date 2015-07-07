@@ -1,3 +1,3 @@
 
-from centos_cert import CentOSCert
-__all__ = ('CentOSCert')
+from centos_cert import CentOSUserCert
+__all__ = ('CentOSUserCert')
