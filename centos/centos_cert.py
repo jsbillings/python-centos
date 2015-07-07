@@ -1,12 +1,15 @@
 import os
 from OpenSSL import crypto
 
+defaults = {
+            'USER_CERT_FILE': '~/.centos.cert',
+           }
 class CentOSUserCert(object):
     DEFAULT_USER_FILE="~/.centos.cert"
 
     def __init__(self, filename=None):
         if filename is None:
-            filename = self.DEFAULT_USER_FILE
+            filename = defaults['USER_CERT_FILE']
 
         with open(os.path.expanduser(filename),'r') as certfile:
             self._cert = crypto.load_certificate(crypto.FILETYPE_PEM, certfile.read())
