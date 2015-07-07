@@ -10,6 +10,9 @@ class CentOSUserCert(object):
 
         with open(os.path.expanduser(filename),'r') as certfile:
             self._cert = crypto.load_certificate(crypto.FILETYPE_PEM, certfile.read())
+
+            # The components of the subject (like the CN and the Email Address)
+            # are all pieces of data we want to reference in this class
             self.__dict__.update(dict(self._cert.get_subject().get_components()))
 
             self.expired = self._cert.has_expired()
