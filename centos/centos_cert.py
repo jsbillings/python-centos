@@ -2,19 +2,13 @@ import os
 import requests
 
 from OpenSSL import crypto
-
-defaults = {
-            'USER_CERT_FILE': '~/.centos.cert',
-            'FAS_TOPURL'    : 'https://accounts.centos.org/',
-            'FAS_CRL'       : 'https://accounts.centos.org/ca/crl.pem',
-           }
+from centos import defaults
 
 class CentOSUserCert(object):
-    DEFAULT_USER_FILE="~/.centos.cert"
 
     def __init__(self, filename=None):
         if filename is None:
-            filename = defaults['USER_CERT_FILE']
+            filename = defaults.USER_CERT_FILE
 
         with open(os.path.expanduser(filename),'r') as certfile:
             self._cert = crypto.load_certificate(crypto.FILETYPE_PEM, certfile.read())
@@ -26,8 +20,9 @@ class CentOSUserCert(object):
             self.expired = self._cert.has_expired() == True
             self.serial = self._cert.get_serial_number()
 
-    def is_valid(self):
-        crl_response = requests.get(defaults['FAS_CRL'])
+    @property
+    def valid(self):
+        crl_response = requests.get(defaults.FAS_CRL)
         crl = crypto.load_crl(crypto.FILETYPE_PEM, crl_response.text)
 
         if self.serial in (long(x.get_serial(), 16) for x in crl.get_revoked()):
