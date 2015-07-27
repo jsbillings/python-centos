@@ -10,7 +10,7 @@ License:	GPLv2
 URL:		https://centos.org/
 Source0:	python-centos-%{version}.tar.gz
 
-BuildRequires:	python-devel
+BuildRequires:	python-devel, python-setuptools
 Requires:	python-requests
 Requires:   pyOpenSSL
 
@@ -20,7 +20,7 @@ BuildArch: noarch
 Provides python bindings for the infrastructure services in the CentOS project
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -c -n %{name}-%{version}
 
 %build
 %{__python} setup.py build
