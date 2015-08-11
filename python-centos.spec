@@ -1,7 +1,7 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 Name:		python-centos
-Version:	0.0.1
+Version:	0.0.2
 Release:	1%{?dist}
 Summary:	Python bindings for the CentOS account system, CBS and other services
 
@@ -38,6 +38,9 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Tue Aug 11 2015 brian@bstinson.com 0.0.2-1
+- Updated to dev version of library defaults 
+
 * Sun Jul 26 2015 brian@bstinson.com 0.0.1-1
 - First build
 

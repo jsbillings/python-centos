@@ -9,5 +9,5 @@ setup(
     author_email="brian@bstinson.com",
     packages = find_packages(),
     license = 'MIT License',
-    version = '0.0.1',
+    version = '0.0.2',
 )
