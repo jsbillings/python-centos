@@ -8,6 +8,6 @@ setup(
     author="Brian Stinson",
     author_email="brian@bstinson.com",
     packages=find_packages(),
-    license='MIT License',
-    version='0.0.4',
+    license='GPLv2',
+    version='0.1.0',
 )

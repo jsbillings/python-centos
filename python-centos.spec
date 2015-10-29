@@ -1,7 +1,7 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 Name:		python-centos
-Version:	0.0.4
+Version:	0.1.0
 Release:	1%{?dist}
 Summary:	Python bindings for the CentOS account system, CBS and other services
 
@@ -38,6 +38,9 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Wed Oct 28 2015 brian@bstinson.com 0.1.0-1
+- Update to point to the prod location of FAS
+
 * Thu Sep 03 2015 brian@bstinson.com 0.0.4-1
 - Add the AccountSystem and a BR for python-fedora
 
