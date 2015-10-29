@@ -11,8 +11,11 @@ URL:		https://centos.org/
 Source0:	python-centos-%{version}.tar.gz
 
 BuildRequires:	python-devel, python-setuptools
-Requires:	python-requests, python-fedora
 Requires:   pyOpenSSL
+Requires:   python-munch
+Requires:   python-requests
+Requires:   python-urllib3
+Requires:   python-lockfile
 
 BuildArch: noarch
 
