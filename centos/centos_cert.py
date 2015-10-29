@@ -11,7 +11,11 @@ class CentOSUserCert(object):
             filename = defaults.USER_CERT_FILE
 
         with open(os.path.expanduser(filename),'r') as certfile:
-            self._cert = crypto.load_certificate(crypto.FILETYPE_PEM, certfile.read())
+            try:
+                self._cert = crypto.load_certificate(crypto.FILETYPE_PEM, certfile.read())
+            except crypto.Error:
+                raise IOError("Invalid or empty certificate file: {0}".format(filename))
+
 
             # The components of the subject (like the CN and the Email Address)
             # are all pieces of data we want to reference in this class
@@ -29,3 +33,4 @@ class CentOSUserCert(object):
             return False
 
         return True
+
