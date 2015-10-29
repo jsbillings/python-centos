@@ -128,14 +128,11 @@ class DictContainer(Munch):
 from centos.client.proxyclient import ProxyClient
 from centos.client.fasproxy import FasProxyClient
 from centos.client.baseclient import BaseClient
-from centos.client.openidproxyclient import OpenIdProxyClient
-from centos.client.openidbaseclient import OpenIdBaseClient
 from centos.client.fas2 import AccountSystem, FASError, CLAError
 # pylint: enable-msg=W0611
 
 __all__ = ('FedoraServiceError', 'ServerError', 'AuthError', 'AppError',
            'FedoraClientError', 'LoginRequiredError', 'DictContainer',
            'FASError', 'CLAError',
-           'ProxyClient', 'FasProxyClient', 'BaseClient', 'OpenIdProxyClient',
-           'OpenIdBaseClient', 'AccountSystem',
+           'ProxyClient', 'FasProxyClient', 'BaseClient', 'AccountSystem',
            )
