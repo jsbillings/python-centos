@@ -56,14 +56,14 @@ from functools import wraps
 from munch import munchify
 from kitchen.text.converters import to_bytes
 
-from fedora import __version__
-from fedora.client import AuthError, LoginRequiredError, ServerError
-from fedora.client.openidproxyclient import (
+from centos import __version__
+from centos.client import AuthError, LoginRequiredError, ServerError
+from centos.client.openidproxyclient import (
     OpenIdProxyClient, absolute_url, openid_login)
 
 log = logging.getLogger(__name__)
 
-b_SESSION_DIR = os.path.join(os.path.expanduser('~'), '.fedora')
+b_SESSION_DIR = os.path.join(os.path.expanduser('~'), '.centos')
 b_SESSION_FILE = os.path.join(b_SESSION_DIR, 'openidbaseclient-sessions.cache')
 
 
@@ -74,7 +74,7 @@ def requires_login(func):
     Decorate a controller method that requires the user to be authenticated.
     Example::
 
-        from fedora.client.openidbaseclient import requires_login
+        from centos.client.openidbaseclient import requires_login
 
         @requires_login
         def rename_user(new_name):
@@ -145,7 +145,7 @@ class OpenIdBaseClient(OpenIdProxyClient):
         """
 
         # These are also needed by OpenIdProxyClient
-        self.useragent = useragent or 'Fedora BaseClient/%(version)s' % {
+        self.useragent = useragent or 'CentOS BaseClient/%(version)s' % {
             'version': __version__}
         self.base_url = base_url
         self.login_url = login_url or urljoin(self.base_url, '/login')

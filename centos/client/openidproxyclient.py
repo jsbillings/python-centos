@@ -66,8 +66,8 @@ from kitchen.text.converters import to_bytes
 # For handling an exception that's coming from requests:
 import urllib3
 
-from fedora import __version__
-from fedora.client import AuthError, ServerError, LoginRequiredError, FedoraServiceError
+from centos import __version__
+from centos.client import AuthError, ServerError, LoginRequiredError, FedoraServiceError
 
 log = logging.getLogger(__name__)
 log.addHandler(NullHandler())
@@ -172,7 +172,7 @@ class OpenIdProxyClient(object):
     on setting attributes below.
 
     If you want something that can manage one user's connection to a Fedora
-    Service, then look into using :class:`~fedora.client.OpenIdBaseClient`
+    Service, then look into using :class:`~centos.client.OpenIdBaseClient`
     instead.
 
     This class has several attributes.  These may be changed after

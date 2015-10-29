@@ -66,8 +66,8 @@ from munch import munchify
 from kitchen.text.converters import to_bytes
 import requests
 
-from fedora import __version__
-from fedora.client import AppError, AuthError, ServerError
+from centos import __version__
+from centos.client import AppError, AuthError, ServerError
 
 log = logging.getLogger(__name__)
 

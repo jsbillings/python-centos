@@ -25,9 +25,9 @@
 .. versionadded:: 0.3.17
 '''
 
-from fedora.client import AuthError, AppError
-from fedora.client.proxyclient import ProxyClient
-from fedora import __version__
+from centos.client import AuthError, AppError
+from centos.client.proxyclient import ProxyClient
+from centos import __version__
 
 import logging
 log = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ class FasProxyClient(ProxyClient):
         different users from different threads.
 
         If you want something that can manage a single user's connection to
-        the Account System then use fedora.client.AccountSystem instead.
+        the Account System then use centos.client.AccountSystem instead.
 
         :kwargs base_url: Base of every URL used to contact the server.
             Defaults to the Fedora Project FAS instance.
@@ -78,7 +78,7 @@ class FasProxyClient(ProxyClient):
         :returns: a tuple of the session id FAS has associated with the user
             and the user's account information.  This is similar to what is
             returned by
-            :meth:`fedora.client.proxyclient.ProxyClient.get_user_info`
+            :meth:`centos.client.proxyclient.ProxyClient.get_user_info`
         :raises AuthError: if the username and password do not work
         '''
         return self.send_request(
@@ -139,7 +139,7 @@ class FasProxyClient(ProxyClient):
         :arg auth_params: Auth information for a particular user.  For
             instance, this can be a username/password pair or a session_id.
             Refer to
-            :meth:`fedora.client.proxyclient.ProxyClient.send_request` for all
+            :meth:`centos.client.proxyclient.ProxyClient.send_request` for all
             the legal values for this.
         :returns: a tuple of session_id and information about the user.
         :raises AuthError: if the auth_params do not give access
@@ -153,7 +153,7 @@ class FasProxyClient(ProxyClient):
         :arg auth_params: Auth information for a particular user.  For
             instance, this can be a username/password pair or a session_id.
             Refer to
-            :meth:`fedora.client.proxyclient.ProxyClient.send_request` for all
+            :meth:`centos.client.proxyclient.ProxyClient.send_request` for all
             the legal values for this.
         :returns: a tuple of session_id and information about the user.
         :raises AppError: if the server returns an exception
@@ -184,7 +184,7 @@ class FasProxyClient(ProxyClient):
         :arg auth_params: Auth information for a particular user.  For
             instance, this can be a username/password pair or a session_id.
             Refer to
-            :meth:`fedora.client.proxyclient.ProxyClient.send_request` for all
+            :meth:`centos.client.proxyclient.ProxyClient.send_request` for all
             the legal values for this.
         :returns: a tuple of session_id and information about groups.  The
             groups information is in two fields:

@@ -47,12 +47,12 @@ try:
 except ImportError:
     from md5 import new as md5
 
-from fedora.client import (
+from centos.client import (
     AppError, BaseClient, FasProxyClient,
     FedoraClientError, FedoraServiceError
 )
 
-from fedora import __version__
+from centos import __version__
 
 ### FIXME: To merge:
 # /usr/bin/fasClient from fas
@@ -92,9 +92,9 @@ class AccountSystem(BaseClient):
 
         If your code is trying to use the AccountSystem object to
         connect to fas for multiple users you probably want to use
-        :class:`~fedora.client.FasProxyClient` instead.  If your code is
+        :class:`~centos.client.FasProxyClient` instead.  If your code is
         trying to reuse a single instance of AccountSystem for multiple users
-        you *definitely* want to use :class:`~fedora.client.FasProxyClient`
+        you *definitely* want to use :class:`~centos.client.FasProxyClient`
         instead.  Using AccountSystem in these cases may result in a user
         being logged in as a different user.  (This may be the case even if
         you instantiate a new AccountSystem object for each user if
@@ -103,11 +103,11 @@ class AccountSystem(BaseClient):
         person.
 
     .. versionchanged:: 0.3.26
-        Added :meth:`~fedora.client.AccountSystem.gravatar_url` that returns
+        Added :meth:`~centos.client.AccountSystem.gravatar_url` that returns
         a url to a gravatar for a user.
     .. versionchanged:: 0.3.33
-        Renamed :meth:`~fedora.client.AccountSystem.gravatar_url` to
-        :meth:`~fedora.client.AccountSystem.avatar_url`.
+        Renamed :meth:`~centos.client.AccountSystem.gravatar_url` to
+        :meth:`~centos.client.AccountSystem.avatar_url`.
     '''
     # proxy is a thread-safe connection to the fas server for verifying
     # passwords of other users

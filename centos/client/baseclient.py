@@ -45,14 +45,14 @@ except ImportError:
 
 from kitchen.text.converters import to_bytes
 
-from fedora import __version__
+from centos import __version__
 
 log = logging.getLogger(__name__)
 
-b_SESSION_DIR = path.join(path.expanduser('~'), '.fedora')
-b_SESSION_FILE = path.join(b_SESSION_DIR, 'fedora_session')
+b_SESSION_DIR = path.join(path.expanduser('~'), '.centos')
+b_SESSION_FILE = path.join(b_SESSION_DIR, 'centos_session')
 
-from fedora.client import AuthError, ProxyClient
+from centos.client import AuthError, ProxyClient
 
 
 class BaseClient(ProxyClient):
@@ -97,7 +97,7 @@ class BaseClient(ProxyClient):
             Added the timeout kwarg
         '''
         self.log = log
-        self.useragent = useragent or 'Fedora BaseClient/%(version)s' % {
+        self.useragent = useragent or 'CentOS BaseClient/%(version)s' % {
             'version': __version__}
         super(BaseClient, self).__init__(
             base_url, useragent=self.useragent,

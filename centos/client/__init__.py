@@ -17,7 +17,7 @@
 # License along with python-fedora; if not, see <http://www.gnu.org/licenses/>
 #
 '''
-fedora.client is used to interact with Fedora Services.
+centos.client is used to interact with Fedora Services.
 
 .. versionchanged:: 0.3.21
     Deprecate DictContainer in favor of bunch.Bunch
@@ -123,22 +123,19 @@ class DictContainer(Munch):
         Munch.__init__(self, *args, **kwargs)
 
 
-# We want people to be able to import fedora.client.*Client directly
+# We want people to be able to import centos.client.*Client directly
 # pylint: disable-msg=W0611
-from fedora.client.proxyclient import ProxyClient
-from fedora.client.fasproxy import FasProxyClient
-from fedora.client.baseclient import BaseClient
-from fedora.client.openidproxyclient import OpenIdProxyClient
-from fedora.client.openidbaseclient import OpenIdBaseClient
-from fedora.client.fas2 import AccountSystem, FASError, CLAError
-from fedora.client.pkgdb import PackageDB, PackageDBError
-from fedora.client.bodhi import BodhiClient, BodhiClientException
-from fedora.client.wiki import Wiki
+from centos.client.proxyclient import ProxyClient
+from centos.client.fasproxy import FasProxyClient
+from centos.client.baseclient import BaseClient
+from centos.client.openidproxyclient import OpenIdProxyClient
+from centos.client.openidbaseclient import OpenIdBaseClient
+from centos.client.fas2 import AccountSystem, FASError, CLAError
 # pylint: enable-msg=W0611
 
 __all__ = ('FedoraServiceError', 'ServerError', 'AuthError', 'AppError',
            'FedoraClientError', 'LoginRequiredError', 'DictContainer',
-           'FASError', 'CLAError', 'BodhiClientException', 'PackageDBError',
+           'FASError', 'CLAError',
            'ProxyClient', 'FasProxyClient', 'BaseClient', 'OpenIdProxyClient',
-           'OpenIdBaseClient', 'AccountSystem', 'PackageDB', 'BodhiClient',
-           'Wiki')
+           'OpenIdBaseClient', 'AccountSystem',
+           )
