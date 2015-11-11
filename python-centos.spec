@@ -16,6 +16,7 @@ Requires:   python-munch
 Requires:   python-requests
 Requires:   python-urllib3
 Requires:   python-lockfile
+Requires:   python-kitchen
 
 BuildArch: noarch
 
@@ -41,6 +42,9 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Tue Nov 10 2015 brian@bstinson.com 0.1.0-2
+- Adding a hard dep on python-kitchen
+
 * Wed Oct 28 2015 brian@bstinson.com 0.1.0-1
 - Update to point to the prod location of FAS
 
