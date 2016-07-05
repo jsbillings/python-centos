@@ -1,7 +1,7 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 
 Name:		python-centos
-Version:	0.1.0
+Version:	0.1.1
 Release:	1%{?dist}
 Summary:	Python bindings for the CentOS account system, CBS and other services
 
@@ -16,6 +16,7 @@ Requires:   python-munch
 Requires:   python-requests
 Requires:   python-urllib3
 Requires:   python-lockfile
+Requires:   python-kitchen
 
 BuildArch: noarch
 
@@ -41,6 +42,12 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Tue Jul 05 2016 brian@bstinson.com 0.1.1-1
+- Fix CentOSUserCert to verify as false if the cert is expired
+
+* Tue Nov 10 2015 brian@bstinson.com 0.1.0-2
+- Adding a hard dep on python-kitchen
+
 * Wed Oct 28 2015 brian@bstinson.com 0.1.0-1
 - Update to point to the prod location of FAS
 

@@ -9,5 +9,5 @@ setup(
     author_email="brian@bstinson.com",
     packages=find_packages(),
     license='GPLv2',
-    version='0.1.0',
+    version='0.1.1',
 )

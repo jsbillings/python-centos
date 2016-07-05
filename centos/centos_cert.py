@@ -21,7 +21,7 @@ class CentOSUserCert(object):
             # are all pieces of data we want to reference in this class
             self.__dict__.update(dict(self._cert.get_subject().get_components()))
 
-            self.expired = self._cert.has_expired() == True
+            self.expired = self._cert.has_expired() != 0L
             self.serial = self._cert.get_serial_number()
 
     @property
@@ -30,6 +30,9 @@ class CentOSUserCert(object):
         crl = crypto.load_crl(crypto.FILETYPE_PEM, crl_response.text)
 
         if self.serial in (long(x.get_serial(), 16) for x in crl.get_revoked()):
+            return False
+
+        if self.expired:
             return False
 
         return True
