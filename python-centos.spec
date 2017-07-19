@@ -2,7 +2,7 @@
 
 Name:		python-centos
 Version:	0.1.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Python bindings for the CentOS account system, CBS and other services
 
 Group:		Applications/System
@@ -42,6 +42,9 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Wed Jul 19 2017 brian@bstinson.com 0.1.1-2
+- Bumpspec to rebuild for F26
+
 * Tue Jul 05 2016 brian@bstinson.com 0.1.1-1
 - Fix CentOSUserCert to verify as false if the cert is expired
 
