@@ -32,26 +32,26 @@ import warnings
 
 
 try:
-    from urllib import quote
+    from urllib.parse import quote
 except ImportError:
     # Python3 support
     from urllib.parse import quote
 
 try:
-    import httplib
+    import http.client
 except ImportError:
     # Python3 support
     import http.client as httplib
 
 try:
-    import Cookie
+    import http.cookies
 except ImportError:
     # Python3 support
     import http.cookies as Cookie
 
 try:
-    from urlparse import urljoin
-    from urlparse import urlparse
+    from urllib.parse import urljoin
+    from urllib.parse import urlparse
 except ImportError:
     # Python3 support
     from urllib.parse import urljoin
@@ -499,7 +499,7 @@ class ProxyClient(object):
                     continue
                 # Fail and raise an error
                 try:
-                    msg = httplib.responses[http_status]
+                    msg = http.client.responses[http_status]
                 except (KeyError, AttributeError):
                     msg = 'Unknown HTTP Server Response'
                 raise ServerError(url, http_status, msg)
@@ -525,7 +525,7 @@ class ProxyClient(object):
 
         # If we need to return a cookie for deprecated code, convert it here
         if self.session_as_cookie:
-            cookie = Cookie.SimpleCookie()
+            cookie = http.cookies.SimpleCookie()
             cookie[self.session_name] = new_session
             new_session = cookie
 

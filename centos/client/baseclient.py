@@ -31,13 +31,13 @@ import warnings
 
 
 try:
-    import cPickle as pickle
+    import pickle as pickle
 except:
     # Python3 support
     import pickle
 
 try:
-    import Cookie
+    import http.cookies
 except ImportError:
     # Python3 support
     import http.cookies as Cookie
@@ -180,7 +180,7 @@ class BaseClient(ProxyClient):
         else:
             saved_sessions = self.__load_ids()
             self._session_id = saved_sessions.get(self.username, '')
-        if isinstance(self._session_id, Cookie.SimpleCookie):
+        if isinstance(self._session_id, http.cookies.SimpleCookie):
             self._session_id = ''
 
         if not self._session_id:
@@ -240,7 +240,7 @@ class BaseClient(ProxyClient):
         session_id = self.session_id
         if not session_id:
             return ''
-        cookie = Cookie.SimpleCookie()
+        cookie = http.cookies.SimpleCookie()
         cookie[self.session_name] = session_id
         return cookie
 
@@ -371,7 +371,7 @@ class BaseClient(ProxyClient):
         # Remove empty params
         # pylint: disable-msg=W0104
         [auth_params.__delitem__(key)
-            for key, value in auth_params.items() if not value]
+            for key, value in list(auth_params.items()) if not value]
         # pylint: enable-msg=W0104
 
         session_id, data = super(BaseClient, self).send_request(

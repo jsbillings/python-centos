@@ -25,14 +25,14 @@ Provide a client module for talking to the Fedora Account System.
 .. moduleauthor:: Ralph Bean <rbean@redhat.com>
 '''
 import itertools
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import warnings
 
 from munch import Munch
 from kitchen.text.converters import to_bytes
 
 try:
-    from urllib import urlencode, quote
+    from urllib.parse import urlencode, quote
 except ImportError:
     # Python3 support
     from urllib.parse import urlencode, quote
@@ -273,7 +273,7 @@ class AccountSystem(BaseClient):
             # Kevin Fenzi: kevin@tummy.com
             'kevin-redhat-bugzilla@tummy.com': 100037,
         }
-        for bugzilla_map in self.__bugzilla_email.items():
+        for bugzilla_map in list(self.__bugzilla_email.items()):
             self.__alternate_email[bugzilla_map[1]] = bugzilla_map[0]
 
         # We use the two mappings as follows::
@@ -588,12 +588,12 @@ class AccountSystem(BaseClient):
         '''Returns a dict relating user IDs to usernames'''
         request = self.send_request('json/user_id', auth=True)
         people = {}
-        for person_id, username in request['people'].items():
+        for person_id, username in list(request['people'].items()):
             # change userids from string back to integer
             people[int(person_id)] = username
         return people
 
-    def people_by_key(self, key=u'username', search=u'*', fields=None):
+    def people_by_key(self, key='username', search='*', fields=None):
         '''Return a dict of people
 
         For example:
@@ -739,7 +739,7 @@ class AccountSystem(BaseClient):
         request = self.send_request('/json/user_id', auth=True)
         user_to_id = {}
         people = Munch()
-        for person_id, username in request['people'].items():
+        for person_id, username in list(request['people'].items()):
             person_id = int(person_id)
             # change userids from string back to integer
             people[person_id] = {'username': username, 'id': person_id}
@@ -770,8 +770,8 @@ class AccountSystem(BaseClient):
         '''
         people = self.people_by_id()
         group = dict(self.group_by_name(groupname))
-        userids = [user[u'person_id'] for user in
-                   group[u'approved_roles'] + group[u'unapproved_roles']]
+        userids = [user['person_id'] for user in
+                   group['approved_roles'] + group['unapproved_roles']]
         return [people[userid] for userid in userids]
 
     ### Configs ###
@@ -801,7 +801,7 @@ class AccountSystem(BaseClient):
             return request['configs'][attribute]
         return None
 
-    def get_configs_like(self, username, application, pattern=u'*'):
+    def get_configs_like(self, username, application, pattern='*'):
         '''Return the config entries that match the keys and the pattern.
 
         Note: authentication on the server will prevent anyone but the user
