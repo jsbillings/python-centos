@@ -19,7 +19,9 @@ class CentOSUserCert(object):
 
             # The components of the subject (like the CN and the Email Address)
             # are all pieces of data we want to reference in this class
-            self.__dict__.update(dict(self._cert.get_subject().get_components()))
+            # Also, decode the strings into UTF-8.
+            self.__dict__.update(dict(
+                [(k.decode('utf-8'),v.decode('utf-8')) for (k,v) in self._cert.get_subject().get_components()]))
 
             self.expired = self._cert.has_expired() != 0
             self.serial = self._cert.get_serial_number()
